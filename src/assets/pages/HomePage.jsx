@@ -1,9 +1,9 @@
-import  "./App.css";
+import React from "react";
 
-function App(){
+function HomePage(){
 
-return <div className="App" > </div>
+return <div className="HomePage" > Home </div>
 
 }
 
-export default App;
+export default HomePage;
