@@ -1,9 +1,27 @@
 import React from "react";
+import { auth, provider } from "../firebase-config";
+import { signInWithPopup } from "firebase/auth";
 
-function LoginPage(){
 
-return <div className="LoginPage" >LoginPage </div>
+function LoginPage({ setIsAuth }){
+const signInWithGoogle = () => {
+    signInWithPopup(auth, provider).then((result) => {
+      localStorage.setItem("isAuth", true);
+      setIsAuth(true);
+      navigate("/");
+    });
+  };
 
+return (
+ <div className="LoginPage">
+      <p>Sign In With Google to Continue</p>
+      <button className="login-with-google-btn" onClick={signInWithGoogle}>
+        Sign in with Google
+      </button>
+    </div>
+
+
+);
 }
 
 export default LoginPage;
