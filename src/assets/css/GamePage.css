@@ -1,18 +1,9 @@
 /* src/GamePage.css */
 
-.LoginPage {
+.GamePage {
   text-align: center;
   margin-top: 50px;
 }
-
-.login-with-google-btn {
-
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 10px; /* Adjust padding as needed */
-}
-
 
 input {
   margin-right: 10px;
@@ -25,7 +16,6 @@ button {
   background-color: #4caf50;
   color: white;
   border: none;
-
 }
 
 button:hover {

@@ -1,4 +1,5 @@
 import React from "react";
+import "../../assets/css/loginPage.css";
 import { auth, provider } from "../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
