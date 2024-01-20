@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 function Header() {
   return (
-    <header>
-      <ul>
+    <header className="navBar">
+      <ul className="navBar">
         <li>
-          <a href="/">home</a>
+          <a href="/">Home Page</a>
         </li>
         <li>
-          <a href="/calculator">calc</a>
+          <a href="/calculator">Interest Calculator</a>
         </li>
         <li>
-          <a href="/debtVisual">debt</a>
+          <a href="/debtVisual">Debt</a>
         </li>
-        <li>
+        <li id="login">
           <a href="/login">Login</a>
         </li>
       </ul>

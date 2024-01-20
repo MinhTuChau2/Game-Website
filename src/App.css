@@ -1,0 +1,25 @@
+.navBar{
+    position: absolute;
+    top:0;
+    left:0;
+    background-color: orange;
+    height: 40px;
+    width:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+li {
+    display: inline;
+    padding: 8px;
+    margin-left: 2%;
+    margin-top: 0px;
+    box-shadow: 5px 10px 3px;
+}
+li:hover{
+    box-shadow: 5px 10px 30px;
+
+}
+#login{
+    margin-left: 60%;
+}
