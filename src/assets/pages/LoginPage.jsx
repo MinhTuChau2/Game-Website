@@ -1,8 +1,9 @@
-import React from "react";
-import "../css/loginPage.css";
+import  "./App.css";
 
-function LoginPage() {
-  return <div>LoginPage</div>;
+function App(){
+
+return <div className="App" > </div>
+
 }
 
-export default LoginPage;
+export default App;
