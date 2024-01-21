@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "../../assets/css/MemoryGamePage.css";
 
 const images = [
@@ -21,58 +22,58 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
-// ... (other imports and code)
+function MemoryGamePage({ onGameComplete, setIsGamePlayedToday }) {
+  const navigate = useNavigate();
 
-// ... (other imports and code)
-
-function MemoryGamePage() {
   const [cards, setCards] = useState(shuffleArray(images));
   const [flippedIndices, setFlippedIndices] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState([]);
   const [attempts, setAttempts] = useState(0);
+  const [isGameComplete, setIsGameComplete] = useState(false);
 
-  // Calculate the total number of pairs
   const totalPairs = images.length / 2;
+
+  const handleCardClick = (index) => {
+    setFlippedIndices((prevIndices) => [...prevIndices, index]);
+  };
 
   useEffect(() => {
     if (flippedIndices.length === 2) {
       const [index1, index2] = flippedIndices;
 
       setTimeout(() => {
-        // Reset the flipped cards after a delay
         setFlippedIndices([]);
       }, 1000);
 
-      // Increase attempts after flipping
       setAttempts((prevAttempts) => prevAttempts + 1);
 
-      // Check for a match
       if (cards[index1] === cards[index2]) {
-        // Handle the match (for example, update state to mark matched pairs)
         setMatchedPairs((prevPairs) => [...prevPairs, cards[index1]]);
       }
     }
   }, [flippedIndices, cards]);
 
-  const handleCardClick = (index) => {
-    setFlippedIndices((prevFlippedIndices) => {
-      // If the clicked card is already flipped or two cards are already flipped, do nothing
-      if (prevFlippedIndices.length === 2 || prevFlippedIndices.includes(index)) {
-        return prevFlippedIndices;
+  useEffect(() => {
+    if (matchedPairs.length === totalPairs) {
+      if (onGameComplete && typeof onGameComplete === 'function') {
+        // Add any relevant logic here for completing the game
+        setIsGameComplete(true);
+        setIsGamePlayedToday(true);
       }
+    }
+  }, [matchedPairs, totalPairs, onGameComplete, setIsGameComplete, setIsGamePlayedToday]);
 
-      // Otherwise, flip the clicked card
-      return [...prevFlippedIndices, index];
-    });
-  };
-
-
-  // Check if all pairs are matched
-  const isGameComplete = matchedPairs.length === totalPairs;
+  // Redirect and update state when the game is complete
+  useEffect(() => {
+    if (isGameComplete) {
+      // Redirect to the Thankyou page
+      navigate('/Thankyou');
+    }
+  }, [isGameComplete, navigate]);
 
   return (
     <div className="MemoryGame">
-      <h1>Simple Memory Game</h1>
+      <h1>Fun Memory Game</h1>
       <p>Match the pairs and enjoy!</p>
       <p>Attempts: {attempts}</p>
       <div className="card-container">
@@ -86,8 +87,7 @@ function MemoryGamePage() {
           </div>
         ))}
       </div>
-      {isGameComplete && <p>Congratulations! You've completed the game!</p>}
-
+      {matchedPairs.length === totalPairs && <p>Congratulations! You've completed the game!</p>}
     </div>
   );
 }

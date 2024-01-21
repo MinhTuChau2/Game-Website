@@ -1,0 +1,117 @@
+/* homePage.css */
+
+.HomePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #bdecb6; /* Soft green background */
+  color: #004d40; /* Dark green text color */
+  font-family: 'Roboto', sans-serif; /* Choose a clean and modern font */
+  text-align: center;
+  animation: fadeInDown 1.5s ease-in-out, scaleIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.5s; /* Add fade-in and scale-in animations */
+
+  h1 {
+    font-size: 3em; /* Larger font size */
+    margin-bottom: 30px; /* Increased margin */
+    animation: bounce 2s ease-in-out infinite alternate; /* Longer and more pronounced bouncing animation */
+    transition: color 0.3s ease-in-out; /* Smooth color transition on hover */
+    cursor: pointer; /* Change cursor on hover */
+  }
+
+    img {
+      width: 250px; /* Larger image */
+      height: 250px; /* Larger image */
+      border-radius: 50%;
+      margin-bottom: 30px; /* Increased margin */
+      animation: slideInLeft 1s ease-in-out, rotate 2s linear infinite, pulse 1.5s ease-in-out infinite; /* Add slide-in, rotating, and pulsating animations */
+      transition: transform 0.3s ease-in-out; /* Smooth transform transition on hover */
+      cursor: pointer; /* Change cursor on hover */
+    }
+     @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+  p {
+    font-size: 1.5em; /* Larger font size */
+    animation: fadeIn 1.5s ease-in-out 2s; /* Add delayed fade-in animation with a slightly longer delay */
+    transition: font-size 0.3s ease-in-out; /* Smooth font-size transition on hover */
+    cursor: pointer; /* Change cursor on hover */
+  }
+
+  &:hover {
+    h1 {
+      color: #ff4081; /* Change text color on hover */
+    }
+
+    img {
+      transform: scale(1.1); /* Enlarge image on hover */
+    }
+
+    p {
+      font-size: 1.8em; /* Increase font size on hover */
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px); /* Increased translateY for more downward motion */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.8);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-40px); /* Increased translateY for more bouncing motion */
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); /* Adjusted pulsating scale for more noticeable effect */
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

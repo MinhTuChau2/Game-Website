@@ -1,0 +1,20 @@
+/* ThankyouCss.css */
+
+.Thankyou {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #F9E4B7;  /* Choose your preferred background color */
+  color: #2C3E50;  /* Choose your preferred text color */
+  font-family: 'Arial', sans-serif;  /* Choose your preferred font */
+}
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+  padding: 20px;
+
+ /* Choose a background color for the text area */
+  color: #2C3E50;  /* Choose a text color for the text area */
+}

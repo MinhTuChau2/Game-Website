@@ -26,6 +26,7 @@ function GuessingGamePage() {
 
       if (userGuess === randomNumber) {
         setResult(`Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts.`);
+
       } else if (userGuess < randomNumber) {
         setResult('Try a higher number!');
       } else {
@@ -57,7 +58,7 @@ function GuessingGamePage() {
       {result && (
         <div>
           <p>{result}</p>
-          <button onClick={handleRestart}>Restart</button>
+
         </div>
       )}
     </div>
