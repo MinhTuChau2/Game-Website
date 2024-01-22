@@ -1,12 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import MemoryGamePage from './MemoryGamePage';
 import GuessingGamePage from './GuessingGamePage';
+import WordScramble from './WordScramble';
+import SudokuGame from './SudokuGame';
+import WordAssociationGame from './WordAssociationGame';
+import MathGame from './MathGame';
+import MemorySequenceGame from './MemorySequenceGame';
+import ReactionTimeGame from './ReactionTimeGame';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import { useNavigate } from 'react-router-dom';
 
-function getRandomGame() {
-  return Math.floor(Math.random() * 2);
+const games = [
+  { id: 0, name: 'Memory Game', component: MemoryGamePage },
+  { id: 1, name: 'Guessing Game', component: GuessingGamePage },
+  { id: 2, name: 'Word Scramble', component: WordScramble },
+  { id: 3, name: 'Sudoku Game', component: SudokuGame },
+  { id: 4, name: 'Word Typing Game', component: WordAssociationGame },
+  { id: 5, name: 'Math Game', component: MathGame },
+  { id: 6, name: 'Memory Sequence Game', component: MemorySequenceGame },
+  { id: 7, name: 'Reaction Time Game', component: ReactionTimeGame },
+];
+
+function getRandomGame(currentGame) {
+  let newGame;
+  do {
+    newGame = Math.floor(Math.random() * games.length);
+  } while (newGame === currentGame);
+
+  return newGame;
 }
 
 function GamePage({ isAuthenticated, onGamePlayed }) {
@@ -21,29 +43,24 @@ function GamePage({ isAuthenticated, onGamePlayed }) {
       const lastPlayed = new Date(lastPlayedDate).toLocaleDateString();
       setIsGamePlayedToday(today === lastPlayed);
     }
-  }, []);
+  }, [selectedGame]);
 
   const handleGamePlayed = () => {
-    // Check if the user has already played a game today
     if (!isGamePlayedToday) {
       localStorage.setItem('lastPlayedDate', new Date().toISOString());
       setIsGamePlayedToday(true);
-      onGamePlayed(); // Notify the parent component about the game being played
-      signOut(auth); // Log the user out after playing the game
+      onGamePlayed();
+      signOut(auth);
     }
   };
 
-  // Handle navigation to prevent resetting the game
   const handleNavigation = () => {
     if (isGamePlayedToday) {
-      // Player has already played today, prevent navigating back to the game
       navigate('/');
-
     }
   };
 
   useEffect(() => {
-    // Listen for beforeunload event to handle browser navigation
     const handleBeforeUnload = (event) => {
       if (isGamePlayedToday) {
         event.returnValue = 'Thank you for playing! Come back another time.';
@@ -57,17 +74,29 @@ function GamePage({ isAuthenticated, onGamePlayed }) {
     };
   }, [isGamePlayedToday]);
 
+  const handleGameChange = (e) => {
+    const newSelectedGame = parseInt(e.target.value, 10);
+    setSelectedGame(newSelectedGame);
+    setIsGamePlayedToday(false);
+  };
+
   return (
     <div>
       {isGamePlayedToday ? (
         <p>Thank you for playing! Come back another time.</p>
       ) : isAuthenticated ? (
         <>
-          {selectedGame === 0 ? (
-            <MemoryGamePage onGamePlayed={handleGamePlayed} />
-          ) : (
-            <GuessingGamePage onGamePlayed={handleGamePlayed} />
-          )}
+          <div>
+            <p>Please select a game:</p>
+            <select onChange={handleGameChange} value={selectedGame}>
+              {games.map((game) => (
+                <option key={game.id} value={game.id}>
+                  {game.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          {React.createElement(games[selectedGame].component, { onGamePlayed: handleGamePlayed })}
         </>
       ) : (
         <p>Please log in to play the game.</p>

@@ -1,0 +1,47 @@
+/* WordScrambleCss.css */
+
+/* Center the text in the middle of the page */
+
+
+/* Style the container div */
+div {
+  text-align: center;
+}
+
+/* Style the paragraph containing the scrambled word */
+p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* Style the label for the input */
+label {
+  font-size: 1.1em;
+}
+
+/* Style the input field */
+input {
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+/* Style the button */
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 1em;
+}
+
+/* Style the correct/incorrect message */
+div p {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+/* Style the "Next Word" button */
+div button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 1em;
+}
