@@ -1,10 +1,9 @@
 .sudoku-board {
-
-  grid-template-columns: repeat(9, 40px);
-  grid-template-rows: repeat(9, 40px);
+  grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(30px, 1fr));
   gap: 1px;
   background-color: #eee;
-  border: 2px solid #333; /* Add a border around the entire board */
+  border: 2px solid #333;
 }
 
 .sudoku-row {
@@ -12,22 +11,21 @@
 }
 
 .sudoku-cell {
-  width: 100px;
+  width: 100%; /* Adjusted for full width on smaller screens */
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 14px; /* Adjusted font size for better fit */
   border: 1px solid #ccc;
-
+  box-sizing: border-box; /* Include borders in width and height calculations */
 }
 
 input.incorrect {
-  color: red; /* Set the text color to red for incorrect input */
-  font-weight: bold; /* Optionally, make the text bold */
-  border: 2px solid red; /* Optionally, add a red border for emphasis */
+  color: red;
+  font-weight: bold;
+  border: 2px solid red;
 }
-
 
 .sudoku-buttons {
   margin-top: 10px;
@@ -35,11 +33,24 @@ input.incorrect {
 
 button {
   padding: 8px 16px;
-  margin-right: 50px;
-  font-size: 14px;
+  margin-right: 10px; /* Adjusted margin for better spacing */
+  font-size: 12px; /* Adjusted font size for better fit */
   cursor: pointer;
 }
 
 button:hover {
   background-color: #ddd;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .sudoku-cell {
+    height: 50px; /* Adjusted height for smaller screens */
+    font-size: 8px; /* Adjusted font size for smaller screens */
+  }
+
+  button {
+    margin-right: 5px; /* Adjusted margin for better spacing on smaller screens */
+    font-size: 10px; /* Adjusted font size for smaller screens */
+  }
 }

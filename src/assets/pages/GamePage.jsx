@@ -7,6 +7,7 @@ import WordAssociationGame from './WordAssociationGame';
 import MathGame from './MathGame';
 import MemorySequenceGame from './MemorySequenceGame';
 import ReactionTimeGame from './ReactionTimeGame';
+import BookGame from './BookGame';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +21,7 @@ const games = [
   { id: 5, name: 'Math Game', component: MathGame },
   { id: 6, name: 'Memory Sequence Game', component: MemorySequenceGame },
   { id: 7, name: 'Reaction Time Game', component: ReactionTimeGame },
+  { id: 8, name: 'Book Game', component: BookGame }
 ];
 
 function getRandomGame(currentGame) {
